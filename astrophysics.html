@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Astrophysics Papers</title>
+    <!-- MathJax for LaTeX math rendering -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Public Sans font -->
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #f7fafc;
+      margin: 0;
+      font-family: 'Public Sans', Arial, sans-serif;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      padding: 28px 0 12px 34px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .home-dot {
+      width: 28px;
+      height: 28px;
+      background: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 14px;
+    }
+    .home-label {
+      color: #bbb;
+      font-size: 1.22em;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-decoration: none;
+      vertical-align: middle;
+      user-select: none;
+    }
+    .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 34px;
+      padding: 30px 0;
+      width: 100%;
+      max-width: 750px;
+    }
+    .paper-card {
+      display: flex;
+      align-items: flex-start;
+      background: #eaf6fc;
+      border-radius: 18px;
+      box-shadow: 0 4px 16px rgba(50,100,180,0.07);
+      padding: 26px 28px 26px 28px;
+      min-height: 180px;
+      gap: 28px;
+      transition: box-shadow 0.2s;
+    }
+    .paper-card:hover {
+      box-shadow: 0 8px 28px rgba(32,80,180,0.14);
+    }
+    .card-image {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #d8eefb;
+      box-shadow: 0 2px 10px rgba(100,140,200,0.10);
+      flex-shrink: 0;
+    }
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      min-width: 0; /* for text ellipses, if needed */
+    }
+    .card-title {
+      font-weight: 600;
+      font-size: 1.17em;
+      margin-bottom: 2px;
+      color: #074f74;
+    }
+    .card-desc {
+      font-size: 1em;
+      color: #294862;
+      margin-bottom: 22px;
+      line-height: 1.6;
+    }
+    .card-btn {
+      align-self: flex-start;
+      padding: 8px 20px;
+      font-size: 1em;
+      font-family: inherit;
+      border-radius: 20px;
+      border: none;
+      background: #2196f3;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: background 0.16s;
+      text-decoration: none;
+    }
+    .card-btn:hover {
+      background: #1565c0;
+    }
+    @media (max-width: 700px) {
+      .card-list {
+        max-width: 98vw;
+        padding: 7vw 0;
+        gap: 20px;
+      }
+      .paper-card {
+        flex-direction: column;
+        align-items: center;
+        padding: 18px 9vw;
+        gap: 17px;
+      }
+      .card-content {
+        align-items: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Home top bar -->
+  <div class="top-bar">
+    <a href="index.html" title="Home" style="display:inline-flex; align-items:center; text-decoration:none;">
+      <span class="home-dot"></span>
+      <span class="home-label">HOME</span>
+    </a>
+  </div>
+
+  <!-- Main content flex -->
+  <div class="card-list">
+    <div class="paper-card">
+      <img class="card-image" src="imgs/COOL_LAMPS_1.png" alt="Paper 1 Image">
+      <div class="card-content">
+        <div>
+            <div class="card-title">
+            COOL-LAMPS VIII: Known Wide-separation Lensed Quasars and their Host Galaxies Reveal a Lack of Evolution in \$M_{\rm{BH}}/M_\star\$ Since \$z\sim 3\$
+            </div>
+            <br><br>
+          <div class="card-desc">
+            We studied six rare, wide-separation lensed quasars and their host galaxies. By combining multiple measurement techniques, we find these host galaxies include both star-forming and quiescent types. Our results show no clear evidence for evolution in the black hole-to-stellar mass ratio since early cosmic times. These strongly lensed systems are valuable tools for future research on how galaxies and their central black holes evolve together.
+          </div>
+        </div>
+        <a class="card-btn" href="https://arxiv.org/abs/2408.03379" target="_blank">Link to Paper</a>
+      </div>
+    </div>
+    <div class="paper-card">
+      <img class="card-image" src="imgs/COOL_LAMPS_2.png" alt="Paper 2 Image">
+      <div class="card-content">
+        <div>
+            <div class="card-title">COOL-LAMPS. VII. Quantifying Strong-lens Scaling Relations with 177 Cluster-scale Strong Gravitational Lenses in DECaLS</div>
+            <br><br>
+            <div class="card-desc">
+                We measured the total mass within the Einstein radius for 177 galaxy cluster strong gravitational lenses found by the COOLLAMPS project, using photometry and redshifts from surveys. The results show strong correlations between cluster mass, luminosity, and the redshift of the central galaxy. The relationship between total mass and stellar mass is especially tight, suggesting that how efficiently clusters form stars may not change much with radius. These findings can help automate the discovery of strong gravitational lenses in large future surveys.
+            </div>
+        </div>
+        <a class="card-btn" href="https://arxiv.org/abs/2401.08575" target="_blank">Link to Paper</a>
+      </div>
+    </div>
+    <div class="paper-card">
+      <img class="card-image" src="https://apod.nasa.gov/apod/image/1908/orion1901_ritchey1024.jpg" alt="Paper 3 Image">
+      <div class="card-content">
+        <div>
+          <div class="card-title">Precise Photometric Measurements from a 1903 Photographic Plate Using a Commercial Scanner</div>
+          <br><br>
+          <div class="card-desc">
+            We demonstrate that star brightness can be measured on archival photographic plates using a standard scanner. Applying the method to a 1903 plate from Yerkes Observatory yields precise results (better than 0.10 mag), with most uncertainty due to the plate itself rather than the scanning. This low-cost approach broadens access to discoveries in historical plate collections. As an example, a possible supernova was identified in the galaxy NGC 7331 using these techniques.
+          </div>
+        </div>
+        <a class="card-btn" href="https://arxiv.org/abs/2101.03699" target="_blank">Link to Paper</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
