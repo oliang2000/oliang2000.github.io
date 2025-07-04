@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Olina Liang | Introduction</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #fff;
+      color: #222;
+      font-family: 'Public Sans', Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      padding: 28px 0 12px 34px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .home-dot {
+      width: 28px;
+      height: 28px;
+      background: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 14px;
+    }
+    .home-label {
+      color: #bbb;
+      font-size: 1.22em;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-decoration: none;
+      vertical-align: middle;
+      user-select: none;
+    }
+    .main-content {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 495px;
+      margin-top: 100px;
+      margin-bottom: 100px;
+    }
+    .profile-photo {
+      width: 250px;
+      height: auto;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-right: 55px;
+      box-shadow: 0 4px 16px rgba(30,30,30,0.09);
+    }
+    .intro-text {
+      max-width: 390px;
+      font-size: 1.15em;
+      line-height: 1.6;
+      text-align: left;
+      font-family: 'Public Sans', Arial, sans-serif;
+      color: #222;
+    }
+    .email-bottom {
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      position: fixed;
+      bottom: 36px;
+      left: 0;
+      z-index: 50;
+      pointer-events: none;
+    }
+    .email-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      pointer-events: auto;  /* keep link clickable */
+    }
+    .sqs-svg-icon--wrapper.email {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #ddd;
+      transition: background 0.18s;
+      text-decoration: none;
+      margin-right: 7px;
+    }
+    .sqs-svg-icon--wrapper.email:hover {
+      background: #bbb;
+    }
+    .sqs-svg-icon--social {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      fill: #444;
+    }
+    .email-link {
+      color: #444;
+      font-size: 1.08em;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      font-weight: 500;
+      transition: color 0.14s;
+    }
+    .email-link:hover { color: #205741; }
+    @media (max-width: 700px) {
+      .main-content {
+        flex-direction: column;
+        margin-top: 85px;
+        margin-bottom: 110px;
+      }
+      .intro-text {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Home top bar -->
+  <div class="top-bar">
+    <a href="olina.html" title="Home" style="display:inline-flex; align-items:center; text-decoration:none;">
+      <span class="home-dot"></span>
+      <span class="home-label">HOME</span>
+    </a>
+  </div>
+
+  <!-- Main content flex (photo left, text right) -->
+  <div class="main-content">
+    <img class="profile-photo" src="liang.jpg" alt="Yingyi Liang Photo">
+    <div class="intro-text">
+      Hi! I’m Yingyi, and I’m fascinated by the patterns and stories we can uncover within complex systems and messy data.
+      I double-majored in astrophysics (B.S.) and economics (B.A.) at the University of Chicago, 
+      and continued with a master’s in Computational Social Science (UChicago, 2025). 
+      I find joy in observing the world through different lenses: examining century-old astronomical glass plates, 
+      understanding gang violence in urban slums, and capturing fleeting moments with my camera.<br><br>
+      I believe true innovation blooms where disciplines meet, so I let myself wander along the
+      <a href="https://en.wikipedia.org/wiki/Random_walk" target="_blank">drunkard's walk</a> of curiosity. 
+      The guiding principle is simple: always keep learning and seek out those who are inquisitive and insightful.
+    </div>
+  </div>
+  
+  <!-- Email at bottom -->
+  <div class="email-bottom">
+    <div class="email-item">
+      <a href="mailto:oliang@uchicago.edu" target="_blank" class="sqs-svg-icon--wrapper email" aria-label="oliang@uchicago.edu">
+        <div>
+          <!-- SVG 'email' icon, self-contained -->
+          <svg class="sqs-svg-icon--social" viewBox="0 0 64 64">
+            <g id="email-icon">
+              <rect x="8" y="16" width="48" height="32" rx="6" fill="none"/>
+              <rect x="8" y="16" width="48" height="32" rx="6" stroke="#444" stroke-width="3" fill="none"/>
+              <polyline points="10,20 32,38 54,20" stroke="#444" stroke-width="3" fill="none"/>
+            </g>
+          </svg>
+        </div>
+      </a>
+      <a href="mailto:oliang@uchicago.edu" class="email-link" target="_blank">oliang@uchicago.edu</a>
+    </div>
+  </div>
+</body>
+</html>
