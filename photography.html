@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Portfolio Gallery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Public Sans', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #faf9f6;
+      min-height: 100vh;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      padding: 28px 0 12px 34px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      z-index: 100;
+      background: #faf9f6;
+    }
+    .home-dot {
+      width: 28px;
+      height: 28px;
+      background: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 14px;
+    }
+    .home-label {
+      color: #bbb;
+      font-size: 1.22em;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-decoration: none;
+      vertical-align: middle;
+      user-select: none;
+    }
+    .portfolio-layout {
+      display: flex;
+      margin-top: 100px;
+      margin-bottom: 100px;
+      min-height: 75vh;
+      box-sizing: border-box;
+      width: 100vw;
+    }
+    .left-bar {
+      width: 140px;
+      min-width: 110px;
+      background: none;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 40px 10px 0 18px;
+      gap: 20px;
+      border-right: 1px solid #e7e5e2;
+    }
+    .portfolio-btn {
+      background: #f4f2ef;
+      border: none;
+      color: #333;
+      font-size: 1.09em;
+      padding: 10px 30px;
+      border-radius: 9px 0 0 9px;
+      cursor: pointer;
+      margin-bottom: 6px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      transition: background .2s, color .2s;
+      outline: none;
+    }
+    .portfolio-btn.active {
+      background: #bbb;
+      color: #fff;
+    }
+    .gallery-section {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 15px;
+    }
+    .gallery-columns {
+      display: flex;
+      width: 100%;
+      max-width: 1080px;
+      gap: 18px;
+      justify-content: center;
+    }
+    .gallery-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .gallery-img {
+      width: 100%;
+      max-width: 330px;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(30,30,30,0.11);
+      background: #ddd;
+    }
+    /* Responsive */
+    @media (max-width: 900px) {
+      .gallery-columns { flex-direction: column; }
+      .gallery-col { max-width: unset; }
+      .gallery-img { max-width: 410px; margin: 0 auto; }
+    }
+    @media (max-width: 670px) {
+      .portfolio-layout { flex-direction: column; }
+      .left-bar { flex-direction: row; border-right: none; padding: 20px 0 0 0; width:auto; align-items: flex-start; }
+      .gallery-section { padding: 8px 2vw; }
+    }
+    .email-bottom {
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      position: fixed;
+      bottom: 36px;
+      left: 0;
+      z-index: 50;
+      pointer-events: none;
+    }
+    .email-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      pointer-events: auto;
+    }
+    .email-link { color: #444; text-decoration: none; font-weight: bold; letter-spacing: 0.02em;}
+    .email-link:hover { text-decoration: underline; }
+    /* Hide number input spinner in FF/Chrome */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0;}
+    input[type=number] { -moz-appearance: textfield;}
+  </style>
+</head>
+<body>
+  <!-- Home top bar -->
+  <div class="top-bar">
+    <a href="index.html" title="Home" style="display:inline-flex; align-items:center; text-decoration:none;">
+      <span class="home-dot"></span>
+      <span class="home-label">HOME</span>
+    </a>
+  </div>
+
+  <div class="portfolio-layout">
+    <!-- Left select bar -->
+    <div class="left-bar">
+      <button class="portfolio-btn active" id="digitalBtn" onclick="showGallery('digital')">Digital</button>
+      <button class="portfolio-btn" id="filmBtn" onclick="showGallery('film')">Film</button>
+    </div>
+
+    <!-- Right gallery -->
+    <div class="gallery-section">
+      <div class="gallery-columns" id="gallery">
+        <!-- JS fills images here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Email at bottom -->
+  <div class="email-bottom">
+    <div class="email-item">
+      <a href="mailto:oliang@uchicago.edu" target="_blank" class="sqs-svg-icon--wrapper email" aria-label="oliang@uchicago.edu">
+        <div>
+          <!-- SVG 'email' icon, self-contained -->
+          <svg class="sqs-svg-icon--social" viewBox="0 0 64 64" width="29" height="29">
+            <g id="email-icon">
+              <rect x="8" y="16" width="48" height="32" rx="6" fill="none"/>
+              <rect x="8" y="16" width="48" height="32" rx="6" stroke="#444" stroke-width="3" fill="none"/>
+              <polyline points="10,20 32,38 54,20" stroke="#444" stroke-width="3" fill="none"/>
+            </g>
+          </svg>
+        </div>
+      </a>
+      <a href="mailto:oliang@uchicago.edu" class="email-link" target="_blank">oliang@uchicago.edu</a>
+    </div>
+  </div>
+
+  <script>
+    const digitalImgCount = 21;
+    const filmImgCount = 9;
+    const galleryDiv = document.getElementById('gallery');
+    const digitalBtn = document.getElementById('digitalBtn');
+    const filmBtn = document.getElementById('filmBtn');
+
+    function showGallery(type) {
+      // Highlight
+      if (type === "digital") {
+        digitalBtn.classList.add('active');
+        filmBtn.classList.remove('active');
+        fillGallery("imgs/digital_portfolio/", digitalImgCount);
+      } else {
+        filmBtn.classList.add('active');
+        digitalBtn.classList.remove('active');
+        fillGallery("imgs/film_portfolio/", filmImgCount);
+      }
+    }
+
+    function fillGallery(basePath, count) {
+      galleryDiv.innerHTML = '';
+      // Prepare 3 cols
+      let cols = [[],[],[]];
+      for(let i=1;i<=count;i++) cols[i%3].push(i);
+      // Assemble
+      for(let c=0;c<3;c++) {
+        let colDiv = document.createElement('div');
+        colDiv.className = 'gallery-col';
+        cols[c].forEach(i=>{
+          let img = document.createElement('img');
+          img.className = 'gallery-img';
+          img.src = basePath + i + ".jpg";
+          img.alt = 'Photo ' + i;
+          colDiv.appendChild(img);
+        });
+        galleryDiv.appendChild(colDiv);
+      }
+    }
+
+    // Initial load
+    showGallery('digital');
+  </script>
+</body>
+</html>
