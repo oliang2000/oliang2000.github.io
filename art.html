@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Yingyi | Interavtive Art</title>
+  <link rel="stylesheet" href="css/email-bottom.css">
+  <link rel="stylesheet" href="css/home-bar.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
@@ -10,34 +12,6 @@
       margin: 0;
       background: #faf9f6;
       min-height: 100vh;
-    }
-    .top-bar {
-      display: flex;
-      align-items: center;
-      padding: 28px 0 12px 34px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      z-index: 100;
-      background: #faf9f6;
-    }
-    .home-dot {
-      width: 28px;
-      height: 28px;
-      background: #bbb;
-      border-radius: 50%;
-      display: inline-block;
-      margin-right: 14px;
-    }
-    .home-label {
-      color: #bbb;
-      font-size: 1.22em;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-decoration: none;
-      vertical-align: middle;
-      user-select: none;
     }
     .main-content {
       margin-top: 100px;
@@ -127,31 +101,6 @@
       .main-video { max-width: 98vw; }
       .gif-img { max-width: 70vw; }
     }
-    .email-bottom {
-      width: 100vw;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      position: fixed;
-      bottom: 36px;
-      left: 0;
-      z-index: 50;
-      pointer-events: none;
-    }
-    .email-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      pointer-events: auto;  /* keep link clickable */
-    }
-    .email-link {
-      color: #444;
-      text-decoration: none;
-      font-weight: bold;
-      letter-spacing: .01em;
-    }
-    .email-link:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -162,8 +111,8 @@
       <span class="home-label">HOME</span>
     </a>
   </div>
-  <div class="main-content">
 
+  <div class="main-content">
     <!-- Gray Row 1: Video + 2 GIFs column -->
     <div class="gray-row">
       <!-- Left: Video + description -->
@@ -197,12 +146,15 @@
     <div class="gray-row second-row">
       <div class="left-col">
         <!-- Add content for 2nd row left here -->
+        <h2 class="video-caption">Coming soon...</h2>
       </div>
       <div class="right-col">
         <!-- Add content for 2nd row right here -->
       </div>
     </div>
   </div>
+  <br><br>
+  <br><br>
 
   <!-- Email at bottom -->
   <div class="email-bottom">
@@ -212,7 +164,6 @@
           <!-- SVG 'email' icon, self-contained -->
           <svg class="sqs-svg-icon--social" viewBox="0 0 64 64" width="29" height="29">
             <g id="email-icon">
-              <rect x="8" y="16" width="48" height="32" rx="6" fill="none"/>
               <rect x="8" y="16" width="48" height="32" rx="6" stroke="#444" stroke-width="3" fill="none"/>
               <polyline points="10,20 32,38 54,20" stroke="#444" stroke-width="3" fill="none"/>
             </g>

@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Portfolio Gallery</title>
+  <title>Yingyi | Photo Portfolio </title>
+  <link rel="stylesheet" href="css/email-bottom.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
@@ -117,26 +118,6 @@
       .left-bar { flex-direction: row; border-right: none; padding: 20px 0 0 0; width:auto; align-items: flex-start; }
       .gallery-section { padding: 8px 2vw; }
     }
-    .email-bottom {
-      width: 100vw;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      position: fixed;
-      bottom: 36px;
-      left: 0;
-      z-index: 50;
-      pointer-events: none;
-    }
-    .email-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      pointer-events: auto;
-    }
-    .email-link { color: #444; text-decoration: none; font-weight: bold; letter-spacing: 0.02em;}
-    .email-link:hover { text-decoration: underline; }
     /* Hide number input spinner in FF/Chrome */
     input[type=number]::-webkit-inner-spin-button,
     input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0;}
@@ -175,7 +156,6 @@
           <!-- SVG 'email' icon, self-contained -->
           <svg class="sqs-svg-icon--social" viewBox="0 0 64 64" width="29" height="29">
             <g id="email-icon">
-              <rect x="8" y="16" width="48" height="32" rx="6" fill="none"/>
               <rect x="8" y="16" width="48" height="32" rx="6" stroke="#444" stroke-width="3" fill="none"/>
               <polyline points="10,20 32,38 54,20" stroke="#444" stroke-width="3" fill="none"/>
             </g>

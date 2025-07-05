@@ -1,0 +1,26 @@
+.top-bar {
+    display: flex;
+    align-items: center;
+    padding: 28px 0 12px 34px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+}
+.home-dot {
+    width: 28px;
+    height: 28px;
+    background: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 14px;
+}
+.home-label {
+    color: #bbb;
+    font-size: 1.22em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+    vertical-align: middle;
+    user-select: none;
+}

@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Olina Liang | Introduction</title>
+  <title>Yingyi | Introduction</title>
+  <link rel="stylesheet" href="css/email-bottom.css">
+  <link rel="stylesheet" href="css/home-bar.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -14,31 +16,6 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-    }
-    .top-bar {
-      display: flex;
-      align-items: center;
-      padding: 28px 0 12px 34px;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    .home-dot {
-      width: 28px;
-      height: 28px;
-      background: #bbb;
-      border-radius: 50%;
-      display: inline-block;
-      margin-right: 14px;
-    }
-    .home-label {
-      color: #bbb;
-      font-size: 1.22em;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-decoration: none;
-      vertical-align: middle;
-      user-select: none;
     }
     .main-content {
       flex: 1 1 auto;
@@ -65,54 +42,6 @@
       font-family: 'Public Sans', Arial, sans-serif;
       color: #222;
     }
-    .email-bottom {
-      width: 100vw;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      position: fixed;
-      bottom: 36px;
-      left: 0;
-      z-index: 50;
-      pointer-events: none;
-    }
-    .email-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      pointer-events: auto;  /* keep link clickable */
-    }
-    .sqs-svg-icon--wrapper.email {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: #ddd;
-      transition: background 0.18s;
-      text-decoration: none;
-      margin-right: 7px;
-    }
-    .sqs-svg-icon--wrapper.email:hover {
-      background: #bbb;
-    }
-    .sqs-svg-icon--social {
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      fill: #444;
-    }
-    .email-link {
-      color: #444;
-      font-size: 1.08em;
-      text-decoration: none;
-      letter-spacing: 0.02em;
-      font-weight: 500;
-      transition: color 0.14s;
-    }
-    .email-link:hover { color: #205741; }
     @media (max-width: 700px) {
       .main-content {
         flex-direction: column;
@@ -157,7 +86,6 @@
           <!-- SVG 'email' icon, self-contained -->
           <svg class="sqs-svg-icon--social" viewBox="0 0 64 64">
             <g id="email-icon">
-              <rect x="8" y="16" width="48" height="32" rx="6" fill="none"/>
               <rect x="8" y="16" width="48" height="32" rx="6" stroke="#444" stroke-width="3" fill="none"/>
               <polyline points="10,20 32,38 54,20" stroke="#444" stroke-width="3" fill="none"/>
             </g>

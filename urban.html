@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Yingyi | Urban Analysis</title>
+  <link rel="stylesheet" href="css/email-bottom.css">
+  <link rel="stylesheet" href="css/home-bar.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* vertically center */
+      align-items: center;     /* horizontally center */
+      min-height: 100vh;
+      overflow: hidden;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fff;
+    }
+    .map-container {
+      position: relative;
+      width: 82vw;
+      max-width: 900px;
+      aspect-ratio: 60 / 37;
+      margin: 0 auto;
+      background: transparent;
+      overflow: visible;
+      display: block;
+    }
+    .map-bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      opacity: 0.3;
+      pointer-events: none;
+      user-select: none;
+    }
+    .location-pin {
+      --dot-x: 24%;
+      --dot-y: 19%;
+      position: absolute;
+      left: var(--dot-x);
+      top: var(--dot-y);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      cursor: pointer;
+      background: none;
+      outline: none;
+      transition: transform 0.2s;
+    }
+    .location-pin svg {
+      width: 32px;
+      height: 32px;
+      display: block;
+      transition: filter 0.2s;
+      color: #888;
+      fill: #888;
+      transition: color 0.2s, fill 0.2s;
+    }
+    .location-pin.us-pin:hover svg {
+      color: #B31942;
+      fill: #B31942;
+      filter: drop-shadow(0 0 5px #B31942);
+    }
+    .location-pin.sa-pin:hover svg {
+      color: #ffde3a;
+      fill: #ffde3a;
+      filter: drop-shadow(0 0 5px #ffd800);
+    }
+    .dot-tooltip {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 115%;
+      transform: translateY(-50%);
+      background: #222;
+      color: #f9f9f9;
+      padding: 7px 16px;
+      border-radius: 8px;
+      font-size: 1em;
+      white-space: nowrap;
+      z-index: 100;
+      transition: opacity 0.21s;
+      pointer-events: none;
+    }
+    .location-pin:hover .dot-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+    @media (max-width: 1100px) {
+      .map-container {
+        width: 96vw;
+        max-width: 100vw;
+      }
+      .location-pin,
+      .location-pin svg {
+        width: 25px;
+        height: 25px;
+      }
+    }
+    /* POPUP styles */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.38);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .popup {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 28px #3338;
+      width: 660px;
+      max-width: 92vw;
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      animation: popIn 0.21s;
+    }
+    @keyframes popIn {
+      from {transform: scale(0.73);}
+      to {transform: scale(1);}
+    }
+    .popup-close {
+      position: absolute;
+      right: 15px;
+      top: 13px;
+      font-size: 1.55em;
+      font-weight: bold;
+      color: #aaa;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 30;
+      transition: color 0.18s;
+    }
+    .popup-close:hover {
+      color: #c33;
+    }
+    .popup-left, .popup-right {
+      padding: 34px 27px 34px 27px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+    }
+    .popup-left {
+      border-right: 1px solid #eee;
+      min-width: 150px;
+      align-items: center;
+      justify-content: center;
+      background: #fafafc;
+    }
+    .popup-left img {
+      max-width: 170px;
+      max-height: 200px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px #0002;
+    }
+    .popup-right {
+      align-items: flex-start;
+      background: #fff;
+    }
+    .popup-title {
+      font-size: 1.25em;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+    .popup-desc {
+      font-size: 1.04em;
+      color: #333;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .popup-btn {
+      padding: 9px 20px;
+      border: none;
+      border-radius: 5px;
+      background: #026d4a;
+      color: #fff;
+      font-weight: 500;
+      font-size: 1em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.17s;
+      display: inline-block;
+      margin-top: 6px;
+    }
+    .popup-btn:hover {
+      background: #1e995d;
+    }
+    @media (max-width: 600px) {
+      .popup {
+        flex-direction: column;
+        min-width: 0;
+        width: 98vw;
+      }
+      .popup-left, .popup-right {
+        padding: 23px 13px;
+        min-width: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Home top bar -->
+  <div class="top-bar">
+    <a href="index.html" title="Home" style="display:inline-flex; align-items:center; text-decoration:none;">
+      <span class="home-dot"></span>
+      <span class="home-label">HOME</span>
+    </a>
+  </div>
+
+  <!-- Map container (centered, large) -->
+  <div class="map-container" id="mapContainer">
+    <img class="map-bg-img" src="imgs/world_map.png" alt="Map" draggable="false">
+    <!-- US location pin (left) -->
+    <div class="location-pin us-pin" id="dot-us" tabindex="0"
+         style="--dot-x: 24%; --dot-y: 45%;">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C7.03 2 3 6.03 3 11c0 5.25 7.13 11.04 8.06 11.8a1 1 0 001.28 0C13.87 22.04 21 16.25 21 11c0-4.97-4.03-9-9-9zm0 18.54C10.38 19.11 5 14.6 5 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 3.6-5.38 8.11-7 9.54z"></path>
+        <circle cx="12" cy="11" r="3"></circle>
+      </svg>
+      <span class="dot-tooltip">United States Opioid Environment</span>
+    </div>
+    <!-- South Africa location pin (right, bottom 80% of map) -->
+    <div class="location-pin sa-pin" id="dot-sa" tabindex="0"
+         style="--dot-x: 52%; --dot-y: 80%;">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C7.03 2 3 6.03 3 11c0 5.25 7.13 11.04 8.06 11.8a1 1 0 001.28 0C13.87 22.04 21 16.25 21 11c0-4.97-4.03-9-9-9zm0 18.54C10.38 19.11 5 14.6 5 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 3.6-5.38 8.11-7 9.54z"></path>
+        <circle cx="12" cy="11" r="3"></circle>
+      </svg>
+      <span class="dot-tooltip">South African Urban Violence</span>
+    </div>
+  </div>
+
+  <!-- South Africa Popup -->
+  <div class="popup-overlay" id="popup-sa">
+    <div class="popup">
+      <button class="popup-close" onclick="closePopup('popup-sa')">&times;</button>
+      <div class="popup-left">
+        <img src="imgs/thesis.png" alt="South African Urban Violence Project">
+        <a class="popup-btn" target="_blank" href="https://knowledge.uchicago.edu/record/15445?ln=en&v=pdf">Read the Paper</a>
+      </div>
+      <div class="popup-right">
+        <div class="popup-title">South African Urban Violence</div>
+        <div class="popup-desc">
+        I examined the relationship between neighborhood informality and crime rates
+        in South Africa, where rapid urbanization has led to criminal organizations stepping in
+        to provide services within some of these settlements. I used K-Means clustering and observed 
+        that the cluster with the highest level of informality (slums) also exhibited the lowest crime rates.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- US Popup -->
+  <div class="popup-overlay" id="popup-us">
+    <div class="popup">
+      <button class="popup-close" onclick="closePopup('popup-us')">&times;</button>
+      <div class="popup-left" style="background:#fff;">
+        <img src="imgs/opioid.png" alt="South African Urban Violence Project">
+        <a class="popup-btn" target="_blank" href="https://github.com/GeoDaCenter/opioid-policy-scan">View on GitHub</a>
+      </div>
+      <div class="popup-right">
+        <div class="popup-title">United States Opioid Environment</div>
+        <div class="popup-desc">
+          I developed a Python script to automatically extract clinic location and drug information from 40 years of Substance Abuse and Mental Health Services Administration (SAMHSA) PDF records. 
+          This data powers the Opioid Environment Policy Scan (OEPS), a free and open-source data warehouse designed to help characterize the multi-dimensional risk environment impacting opioid use and health outcomes across the United States.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showPopup(popupId) {
+      document.getElementById(popupId).style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+    function closePopup(popupId) {
+      document.getElementById(popupId).style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+    document.getElementById("dot-sa").onclick = function(){ showPopup('popup-sa'); };
+    document.getElementById("dot-us").onclick = function(){ showPopup('popup-us'); };
+    document.querySelectorAll('.popup-overlay').forEach(function(overlay){
+      overlay.addEventListener('click', function(e){
+        if (e.target === overlay) {
+          overlay.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      });
+    });
+  </script>
+
+    <!-- Email at bottom -->
+  <div class="email-bottom">
+    <div class="email-item">
+      <a href="mailto:oliang@uchicago.edu" target="_blank" class="sqs-svg-icon--wrapper email" aria-label="oliang@uchicago.edu">
+        <div>
+          <!-- SVG 'email' icon, self-contained -->
+          <svg class="sqs-svg-icon--social" viewBox="0 0 64 64" width="29" height="29">
+            <g id="email-icon">
+              <rect x="8" y="16" width="48" height="32" rx="6" stroke="#444" stroke-width="3" fill="none"/>
+              <polyline points="10,20 32,38 54,20" stroke="#444" stroke-width="3" fill="none"/>
+            </g>
+          </svg>
+        </div>
+      </a>
+      <a href="mailto:oliang@uchicago.edu" class="email-link" target="_blank">oliang@uchicago.edu</a>
+    </div>
+  </div>
+
+</body>
+</html>
