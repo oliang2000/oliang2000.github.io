@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Yingyi | Astrophysics Papers</title>
-  <link rel="stylesheet" href="css/email-bottom.css">
+  <link rel="stylesheet" href="css/email-bottom.css"><!-- Remain as instructed! -->
   <link rel="stylesheet" href="css/home-bar.css">
-    <!-- MathJax for LaTeX math rendering -->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Public Sans font -->
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Flip Card Only CSS -->
   <style>
     body {
       min-height: 100vh;
@@ -22,61 +22,103 @@
       margin: 0;
       font-family: 'Public Sans', Arial, sans-serif;
     }
-    .card-list {
+    .cards-row {
+      display: flex;
+      gap: 32px;
+      margin-top: 60px;
+      margin-bottom: 52px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .flip-card {
+      background: transparent;
+      width: 320px;
+      height: 410px;
+      perspective: 1200px;
+      border-radius: 18px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(50,100,180,0.07);
+      position: relative;
+      flex-shrink: 0;
+      transition: box-shadow 0.17s;
+    }
+    .flip-card:focus-within,
+    .flip-card:active {
+      box-shadow: 0 8px 32px rgba(32,80,180,0.10);
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      transition: transform 0.5s cubic-bezier(.8,.2,.2,1);
+      transform-style: preserve-3d;
+    }
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;   /* absolutely position faces identically */
+      top: 0;
+      padding: 0 0 12px 0;
+      backface-visibility: hidden;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(100,140,200,0.06);
       display: flex;
       flex-direction: column;
-      gap: 34px;
-      padding: 30px 0;
-      width: 100%;
-      max-width: 750px;
+      align-items: center;
+      justify-content: flex-end;
+      box-sizing: border-box;  /* crucial: don't let padding change box size */
+      overflow: hidden;        /* prevent unwanted scrollbars on card back */
     }
-    .paper-card {
-      display: flex;
-      align-items: flex-start;
-      background: #eaf6fc;
-      border-radius: 18px;
-      box-shadow: 0 4px 16px rgba(50,100,180,0.07);
-      padding: 26px 28px 26px 28px;
-      min-height: 180px;
-      gap: 28px;
-      transition: box-shadow 0.2s;
+    .flip-card-front {
+      background: #fff;
     }
-    .paper-card:hover {
-      box-shadow: 0 8px 28px rgba(32,80,180,0.14);
-    }
-    .card-image {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
+    .flip-card-front img {
+      width: 90%;
+      height: 230px;
+      border-radius: 16px;
+      margin-top: 20px;
       object-fit: cover;
       background: #d8eefb;
-      box-shadow: 0 2px 10px rgba(100,140,200,0.10);
-      flex-shrink: 0;
-    }
-    .card-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      flex: 1;
-      min-width: 0; /* for text ellipses, if needed */
+      box-shadow: 0 2px 8px rgba(100,140,200,0.05);
     }
     .card-title {
       font-weight: 600;
-      font-size: 1.17em;
-      margin-bottom: 2px;
+      font-size: 1.23em;
       color: #074f74;
+      margin: 28px 10px 0px 10px;
+      text-align: center;
+    }
+    .flip-card-back {
+      background: #eaf6fc;
+      color: #294862;
+      transform: rotateY(180deg);
+      /* removed extra padding, matched padding to .flip-card-front */
+      overflow: hidden;
+      padding: 0 0 12px 0;
     }
     .card-desc {
       font-size: 1em;
+      margin-bottom: 16px;
+      margin-top: 20px;
+      line-height: 1.36;
+      text-align: center;
       color: #294862;
-      margin-bottom: 22px;
-      line-height: 1.6;
+      max-height: 170px;
+      overflow-y: auto;
+      padding: 0 20px;
+      word-break: break-word;
+      box-sizing: border-box;
     }
     .card-btn {
-      align-self: flex-start;
-      padding: 8px 20px;
-      font-size: 1em;
-      font-family: inherit;
+      display: inline-block;
+      padding: 10px 26px;
+      font-size: 1.06em;
       border-radius: 20px;
       border: none;
       background: #2196f3;
@@ -84,27 +126,42 @@
       font-weight: 600;
       letter-spacing: 0.02em;
       cursor: pointer;
-      transition: background 0.16s;
       text-decoration: none;
+      box-shadow: 0 1px 7px rgba(70,120,220,0.07);
+      transition: background 0.16s;
+      margin-top: auto;
+      margin-bottom: 0;
     }
     .card-btn:hover {
       background: #1565c0;
     }
+    @media (max-width: 1100px) {
+      .cards-row { gap: 18px;}
+      .flip-card { width: 44vw; max-width: 320px; min-width: 170px;}
+    }
     @media (max-width: 700px) {
-      .card-list {
-        max-width: 98vw;
-        padding: 7vw 0;
-        gap: 20px;
-      }
-      .paper-card {
+      .cards-row {
         flex-direction: column;
-        align-items: center;
-        padding: 18px 9vw;
-        gap: 17px;
+        gap: 22px;
+        margin-top: 26px;
       }
-      .card-content {
-        align-items: center;
-        text-align: center;
+      .flip-card {
+        width: 98vw;
+        min-width: unset;
+        max-width: 440px;
+        height: 410px;
+      }
+      .flip-card-front img {
+        width: 94%;
+        height: 33vw;
+        min-height: 160px;
+        max-height: 220px;
+      }
+      .card-desc {
+        font-size: 0.93em;
+        margin-top: 12px;
+        margin-bottom: 10px;
+        max-height: 100px;
       }
     }
   </style>
@@ -119,70 +176,95 @@
     </a>
   </div>
 
-  <!-- Main content flex -->
-  <div class="card-list">
-    <div class="paper-card">
-      <img class="card-image" src="imgs/COOL_LAMPS_1.png" alt="Paper 1 Image">
-      <div class="card-content">
-        <div>
-            <div class="card-title">
-            COOL-LAMPS VIII: Known Wide-separation Lensed Quasars and their Host Galaxies Reveal a Lack of Evolution in \$M_{\rm{BH}}/M_\star\$ Since \$z\sim 3\$
-            </div>
-            <br><br>
-          <div class="card-desc">
-            We studied six rare, wide-separation lensed quasars and their host galaxies. By combining multiple measurement techniques, we find these host galaxies include both star-forming and quiescent types. Our results show no clear evidence for evolution in the black hole-to-stellar mass ratio since early cosmic times. These strongly lensed systems are valuable tools for future research on how galaxies and their central black holes evolve together.
+  <!-- Flip Cards ROW -->
+  <div class="cards-row">
+    <!-- Card 1 -->
+    <div class="flip-card" tabindex="0" aria-label="Flip card for COOL-LAMPS VIII" onclick="flipCard(this)" onkeypress="if(event.key==='Enter'){flipCard(this);}">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="imgs/COOL_LAMPS_1.png" alt="COOL-LAMPS VIII">
+          <div class="card-title">COOL-LAMPS VIII<br>
+            <span style="font-weight:400;font-size:0.97em;">Known Wide-separation Lensed Quasars</span>
           </div>
         </div>
-        <a class="card-btn" href="https://arxiv.org/abs/2408.03379" target="_blank">Link to Paper</a>
-      </div>
-    </div>
-    <div class="paper-card">
-      <img class="card-image" src="imgs/COOL_LAMPS_2.png" alt="Paper 2 Image">
-      <div class="card-content">
-        <div>
-            <div class="card-title">COOL-LAMPS. VII. Quantifying Strong-lens Scaling Relations with 177 Cluster-scale Strong Gravitational Lenses in DECaLS</div>
-            <br><br>
-            <div class="card-desc">
-                We measured the total mass within the Einstein radius for 177 galaxy cluster strong gravitational lenses found by the COOLLAMPS project, using photometry and redshifts from surveys. The results show strong correlations between cluster mass, luminosity, and the redshift of the central galaxy. The relationship between total mass and stellar mass is especially tight, suggesting that how efficiently clusters form stars may not change much with radius. These findings can help automate the discovery of strong gravitational lenses in large future surveys.
-            </div>
-        </div>
-        <a class="card-btn" href="https://arxiv.org/abs/2401.08575" target="_blank">Link to Paper</a>
-      </div>
-    </div>
-    <div class="paper-card">
-      <img class="card-image" src="https://apod.nasa.gov/apod/image/1908/orion1901_ritchey1024.jpg" alt="Paper 3 Image">
-      <div class="card-content">
-        <div>
-          <div class="card-title">Precise Photometric Measurements from a 1903 Photographic Plate Using a Commercial Scanner</div>
-          <br><br>
+        <div class="flip-card-back">
+          <div class="card-title">COOL-LAMPS VIII</div>
           <div class="card-desc">
-            We demonstrate that star brightness can be measured on archival photographic plates using a standard scanner. Applying the method to a 1903 plate from Yerkes Observatory yields precise results (better than 0.10 mag), with most uncertainty due to the plate itself rather than the scanning. This low-cost approach broadens access to discoveries in historical plate collections. As an example, a possible supernova was identified in the galaxy NGC 7331 using these techniques.
+            We studied six rare, wide-separation lensed quasars and their host galaxies. By combining multiple measurement techniques, we find these host galaxies include both star-forming and quiescent types. There is no clear evidence for evolution in the black hole-to-stellar mass ratio since early cosmic times.
+          </div>
+          <a class="card-btn" href="https://arxiv.org/abs/2408.03379" target="_blank">Read Paper</a>
+        </div>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="flip-card" tabindex="0" aria-label="Flip card for COOL-LAMPS VII" onclick="flipCard(this)" onkeypress="if(event.key==='Enter'){flipCard(this);}">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="imgs/COOL_LAMPS_2.png" alt="COOL-LAMPS VII">
+          <div class="card-title">
+            COOL-LAMPS VII<br>
+            <span style="font-weight:400;font-size:0.97em;">Quantifying Strong-lens Scaling Relations</span>
           </div>
         </div>
-        <a class="card-btn" href="https://arxiv.org/abs/2101.03699" target="_blank">Link to Paper</a>
+        <div class="flip-card-back">
+          <div class="card-title">COOL-LAMPS VII</div>
+          <div class="card-desc">
+            We measured the total mass within the Einstein radius for 177 cluster strong gravitational lenses, using photometry and redshifts from surveys. Mass, luminosity, and central galaxy redshift are strongly correlated. The mass-stellar mass relation is especially tight.
+          </div>
+          <a class="card-btn" href="https://arxiv.org/abs/2401.08575" target="_blank">Read Paper</a>
+        </div>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="flip-card" tabindex="0" aria-label="Flip card for Photometric Measurements" onclick="flipCard(this)" onkeypress="if(event.key==='Enter'){flipCard(this);}">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://apod.nasa.gov/apod/image/1908/orion1901_ritchey1024.jpg" alt="Photometric Measurements">
+          <div class="card-title">
+            Photometric Measurements<br>
+            <span style="font-weight:400;font-size:0.97em;">Lessons from century old Photographic Plates</span>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <div class="card-title">Photometric Measurements</div>
+          <div class="card-desc">
+            We show star brightness can be measured on old plates using a standard scanner—the main uncertainty is just the plate itself. This low-cost method broadens access to discoveries in historical plate collections, as shown by a possible supernova discovery.
+          </div>
+          <a class="card-btn" href="https://arxiv.org/abs/2101.03699" target="_blank">Read Paper</a>
+        </div>
       </div>
     </div>
   </div>
-  <br><br>
-  <br><br>
-  <br><br>
 
-    <!-- Email at bottom -->
+  <!-- Email bar -->
   <div class="email-bottom">
-    <div class="email-item">
-      <a href="mailto:oliang@uchicago.edu" target="_blank" class="sqs-svg-icon--wrapper email" aria-label="oliang@uchicago.edu">
-        <div>
-          <!-- SVG 'email' icon, self-contained -->
+    <div class="email-bottom-bar">
+      <div class="email-item">
+        <a href="mailto:oliang@uchicago.edu" target="_blank" class="sqs-svg-icon--wrapper email" aria-label="oliang@uchicago.edu">
           <svg class="sqs-svg-icon--social" viewBox="0 0 64 64">
             <g id="email-icon">
               <rect x="8" y="16" width="48" height="32" rx="6" stroke="#444" stroke-width="3" fill="none"/>
               <polyline points="10,20 32,38 54,20" stroke="#444" stroke-width="3" fill="none"/>
             </g>
           </svg>
-        </div>
-      </a>
-      <a href="mailto:oliang@uchicago.edu" class="email-link" target="_blank">oliang@uchicago.edu</a>
+        </a>
+        <a href="mailto:oliang@uchicago.edu" class="bottom-link" target="_blank">oliang@uchicago.edu</a>
+      </div>
     </div>
   </div>
+
+  <!-- Flip cards script -->
+  <script>
+    function flipCard(card) {
+      if(card.classList.contains('flipped')) {
+        card.classList.remove('flipped');
+      } else {
+        // Only one open at a time
+        document.querySelectorAll('.flip-card.flipped').forEach(c => c.classList.remove('flipped'));
+        card.classList.add('flipped');
+      }
+    }
+  </script>
+
 </body>
 </html>
