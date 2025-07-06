@@ -9,8 +9,8 @@
     body {
       display: flex;
       flex-direction: column;
-      justify-content: center; /* vertically center */
-      align-items: center;     /* horizontally center */
+      justify-content: center;
+      align-items: center;
       min-height: 100vh;
       overflow: hidden;
       margin: 0;
@@ -49,18 +49,25 @@
       justify-content: center;
       z-index: 2;
       cursor: pointer;
-      background: none;
+      background: #f6f9ff;
       outline: none;
-      transition: transform 0.2s;
+      border-radius: 50%;
+      box-shadow: 0 1.5px 7px #8887;
+      transition: transform 0.19s, box-shadow 0.18s;
+    }
+    .location-pin:hover,
+    .location-pin:focus {
+      box-shadow: 0 4px 18px #3a74d822, 0 2.5px 13px #bbb9;
+      transform: scale(1.035);
+      z-index: 20;
     }
     .location-pin svg {
       width: 32px;
       height: 32px;
       display: block;
-      transition: filter 0.2s;
+      transition: filter 0.2s, color 0.2s, fill 0.2s;
       color: #888;
       fill: #888;
-      transition: color 0.2s, fill 0.2s;
     }
     .location-pin.us-pin:hover svg {
       color: #B31942;
@@ -72,27 +79,42 @@
       fill: #ffde3a;
       filter: drop-shadow(0 0 5px #ffd800);
     }
-    .dot-tooltip {
-      visibility: hidden;
-      opacity: 0;
+    /* Info boxes beside each pin */
+    .pin-info-box {
       position: absolute;
-      top: 50%;
-      left: 115%;
-      transform: translateY(-50%);
-      background: #222;
-      color: #f9f9f9;
-      padding: 7px 16px;
-      border-radius: 8px;
-      font-size: 1em;
-      white-space: nowrap;
-      z-index: 100;
-      transition: opacity 0.21s;
-      pointer-events: none;
+      min-width: 180px;
+      max-width: 270px;
+      background: #fff;
+      border-radius: 11px;
+      box-shadow: 0 2px 20px rgba(50,60,120,0.15), 0 1.5px 4px #ccc7;
+      padding: 13px 20px 13px 16px;
+      font-size: 1.03em;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      cursor: pointer;
+      z-index: 19;
+      border: 0.5px solid #eee;
+      transition: box-shadow 0.18s, transform 0.16s;
     }
-    .location-pin:hover .dot-tooltip {
-      visibility: visible;
-      opacity: 1;
+    .pin-info-box:hover {
+      box-shadow: 0 6px 32px 0 #2474d824, 0 2.5px 13px #bbb9;
+      transform: translateY(-2px) scale(1.035);
     }
+    .pin-info-title {
+      font-weight: 600;
+      color: #1648ad;
+      margin-bottom: 3px;
+      font-size: 1.08em;
+    }
+    .pin-info-desc {
+      color: #292929;
+      font-size: 0.98em;
+      margin-bottom: 0;
+      margin-top: 0;
+      line-height: 1.35;
+    }
+
     @media (max-width: 1100px) {
       .map-container {
         width: 96vw;
@@ -104,6 +126,14 @@
         height: 25px;
       }
     }
+    @media (max-width: 900px) {
+      .pin-info-box {
+        min-width: 119px;
+        font-size: 0.97em;
+        padding: 9px 10px 9px 11px;
+      }
+    }
+
     /* POPUP styles */
     .popup-overlay {
       position: fixed;
@@ -224,26 +254,56 @@
     </a>
   </div>
 
-  <!-- Map container (centered, large) -->
+  <!-- Map container  -->
   <div class="map-container" id="mapContainer">
     <img class="map-bg-img" src="imgs/world_map.png" alt="Map" draggable="false">
-    <!-- US location pin (left) -->
-    <div class="location-pin us-pin" id="dot-us" tabindex="0"
-         style="--dot-x: 24%; --dot-y: 45%;">
+    <!-- US location pin and info box -->
+    <div
+      class="location-pin us-pin"
+      id="dot-us"
+      tabindex="0"
+      style="--dot-x: 24%; --dot-y: 45%;"
+      onclick="showPopup('popup-us')"
+      aria-label="United States Opioid Environment">
       <svg viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 2C7.03 2 3 6.03 3 11c0 5.25 7.13 11.04 8.06 11.8a1 1 0 001.28 0C13.87 22.04 21 16.25 21 11c0-4.97-4.03-9-9-9zm0 18.54C10.38 19.11 5 14.6 5 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 3.6-5.38 8.11-7 9.54z"></path>
         <circle cx="12" cy="11" r="3"></circle>
       </svg>
-      <span class="dot-tooltip">United States Opioid Environment</span>
     </div>
-    <!-- South Africa location pin (right, bottom 80% of map) -->
-    <div class="location-pin sa-pin" id="dot-sa" tabindex="0"
-         style="--dot-x: 52%; --dot-y: 80%;">
+    <div
+      class="pin-info-box us-info"
+      style="top: 45%; left: calc(24% + 44px);"
+      onclick="showPopup('popup-us')"
+      tabindex="0">
+      <div class="pin-info-title">U.S. Opioid Environment</div>
+      <div class="pin-info-desc">
+        Automated Python pipeline to extract US clinic data.
+        Powers the Opioid Environment Policy Scan (OEPS).
+      </div>
+    </div>
+
+    <!-- South Africa location pin and info box -->
+    <div
+      class="location-pin sa-pin"
+      id="dot-sa"
+      tabindex="0"
+      style="--dot-x: 52%; --dot-y: 80%;"
+      onclick="showPopup('popup-sa')"
+      aria-label="South African Urban Violence">
       <svg viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 2C7.03 2 3 6.03 3 11c0 5.25 7.13 11.04 8.06 11.8a1 1 0 001.28 0C13.87 22.04 21 16.25 21 11c0-4.97-4.03-9-9-9zm0 18.54C10.38 19.11 5 14.6 5 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 3.6-5.38 8.11-7 9.54z"></path>
         <circle cx="12" cy="11" r="3"></circle>
       </svg>
-      <span class="dot-tooltip">South African Urban Violence</span>
+    </div>
+    <div
+      class="pin-info-box sa-info"
+      style="top: 80%; left: calc(52% + 44px);"
+      onclick="showPopup('popup-sa')"
+      tabindex="0">
+      <div class="pin-info-title">South African Urban Violence</div>
+      <div class="pin-info-desc">
+        Informality and crime rates in Cape Town, South Africa.
+      </div>
     </div>
   </div>
 
@@ -254,6 +314,7 @@
       <div class="popup-left">
         <img src="imgs/thesis.png" alt="South African Urban Violence Project">
         <a class="popup-btn" target="_blank" href="https://knowledge.uchicago.edu/record/15445?ln=en&v=pdf">Read the Paper</a>
+        <a class="popup-btn" target="_blank" href="https://github.com/oliang2000/Liang-MAthesis/tree/main">View on GitHub</a>
       </div>
       <div class="popup-right">
         <div class="popup-title">South African Urban Violence</div>
@@ -272,7 +333,7 @@
     <div class="popup">
       <button class="popup-close" onclick="closePopup('popup-us')">&times;</button>
       <div class="popup-left" style="background:#fff;">
-        <img src="imgs/opioid.png" alt="South African Urban Violence Project">
+        <img src="imgs/opioid.png" alt="US Opioid Project">
         <a class="popup-btn" target="_blank" href="https://github.com/GeoDaCenter/opioid-policy-scan">View on GitHub</a>
       </div>
       <div class="popup-right">
@@ -294,8 +355,6 @@
       document.getElementById(popupId).style.display = "none";
       document.body.style.overflow = "auto";
     }
-    document.getElementById("dot-sa").onclick = function(){ showPopup('popup-sa'); };
-    document.getElementById("dot-us").onclick = function(){ showPopup('popup-us'); };
     document.querySelectorAll('.popup-overlay').forEach(function(overlay){
       overlay.addEventListener('click', function(e){
         if (e.target === overlay) {

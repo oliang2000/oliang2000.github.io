@@ -30,7 +30,7 @@
       gap: 38px;
     }
     .left-col {
-      flex: 7;
+      flex: 5;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -59,7 +59,7 @@
       background: #bbb;
     }
     .right-col {
-      flex: 3;
+      flex: 5;
       display: flex;
       flex-direction: column;
       gap: 34px;
@@ -73,11 +73,14 @@
       gap: 10px;
     }
     .gif-img {
-      width: 95%;
-      max-width: 220px;
+      height: 180px;            /* Fixed height for all GIFs/images */
+      width: auto;              /* Maintains aspect ratio */
+      max-width: 100%;          /* Prevents overflow */
       border-radius: 10px;
       box-shadow: 0 2px 14px rgba(22,22,22,0.09);
       background: #ccc;
+      display: block;
+      object-fit: contain;     /* Ensures the whole image is visible */
     }
     .gif-desc {
       font-size: 0.98em;
@@ -99,7 +102,10 @@
       }
       .left-col,.right-col { width: 100%; max-width: 100vw;}
       .main-video { max-width: 98vw; }
-      .gif-img { max-width: 70vw; }
+      .gif-img { 
+        height: 25vw;
+        max-height: 200px;
+      }
     }
   </style>
 </head>
@@ -113,9 +119,9 @@
   </div>
 
   <div class="main-content">
-    <!-- Gray Row 1: Video + 2 GIFs column -->
+    <!-- Row 1: Ping Pong Game -->
     <div class="gray-row">
-      <!-- Left: Video + description -->
+      <!-- Left col: Video + description -->
       <div class="left-col">
         <h2 class="video-caption">Ping! Pong! Game!</h2>
         <p class="video-desc">
@@ -129,27 +135,30 @@
           Your browser does not support the video tag.
         </video>
       </div>
-      <!-- Right: Two GIFs with captions below -->
+      <!-- Right column -->
       <div class="right-col">
+        <div class="gif-block">
+          <img class="gif-img" src="imgs/pingpong_network_structure.png" alt="Program Network Structure">
+          <div class="gif-desc">Network structure in TouchDesigner.</div>
+        </div>
         <div class="gif-block">
           <img class="gif-img" src="files/text.gif" alt="GIF 1">
           <div class="gif-desc">A text gif produced with the same pipeline.</div>
         </div>
         <div class="gif-block">
           <img class="gif-img" src="files/g_test.gif" alt="GIF 2">
-          <div class="gif-desc">Testing out different gravity and speed parameters, as well as dynamic camera angles.</div>
+          <div class="gif-desc">Testing out different gravity, speed parameters + dynamic camera angles.</div>
         </div>
       </div>
     </div>
 
-    <!-- Gray Row 2: Structure for your own content -->
+    <!-- Row 2 -->
     <div class="gray-row second-row">
       <div class="left-col">
-        <!-- Add content for 2nd row left here -->
-        <h2 class="video-caption">Coming soon...</h2>
+        <h2 class="video-caption"><strong>Coming soon...</strong></h2>
       </div>
       <div class="right-col">
-        <!-- Add content for 2nd row right here -->
+        <!-- Add content for 2nd row here -->
       </div>
     </div>
   </div>
