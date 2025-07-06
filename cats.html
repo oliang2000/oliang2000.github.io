@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Foster Cats Grid</title>
+  <link rel="stylesheet" href="css/email-bottom.css"><!-- Remain as instructed! -->
+  <link rel="stylesheet" href="css/home-bar.css">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      font-family: 'Public Sans', Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #faf9f8;
+    }
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px 32px;
+      background: #fff;
+      padding: 32px 32px 24px 32px;
+      border-radius: 32px;
+      box-shadow: 0 2px 18px rgba(60,60,60,0.08);
+    }
+    .cat-item {
+      text-align: center;
+      padding: 2px;
+    }
+    .cat-img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 12px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.10);
+    }
+    .cat-name {
+      font-size: 1.13em;
+      font-weight: 700;
+      color: #272822;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+<!-- Home top bar -->
+  <div class="top-bar">
+    <a href="index.html" title="Home" style="display:inline-flex; align-items:center; text-decoration:none;">
+      <span class="home-dot"></span>
+      <span class="home-label">HOME</span>
+    </a>
+  </div>
+
+  <div class="cat-grid">
+    <div class="cat-item">
+      <img src="imgs/foster/shadow.jpeg" class="cat-img" alt="Shadow">
+      <div class="cat-name">Shadow</div>
+    </div>
+    <div class="cat-item">
+      <img src="imgs/foster/pada.jpeg" class="cat-img" alt="Pada">
+      <div class="cat-name">Pada</div>
+    </div>
+    <div class="cat-item">
+      <img src="imgs/foster/bada.jpeg" class="cat-img" alt="Bada">
+      <div class="cat-name">Bada</div>
+    </div>
+    <div class="cat-item">
+      <img src="imgs/foster/sur.jpeg" class="cat-img" alt="Sur">
+      <div class="cat-name">Sur</div>
+    </div>
+    <div class="cat-item">
+      <img src="imgs/foster/fing.jpeg" class="cat-img" alt="Fing">
+      <div class="cat-name">Fing</div>
+    </div>
+    <div class="cat-item">
+      <img src="imgs/foster/board.jpeg" class="cat-img" alt="Board">
+      <div class="cat-name">Board</div>
+    </div>
+    <div class="cat-item">
+      <img src="imgs/foster/frankie.jpeg" class="cat-img" alt="Frankie">
+      <div class="cat-name">Frankie</div>
+    </div>
+    <div class="cat-item">
+      <img src="imgs/foster/danny.jpeg" class="cat-img" alt="Danny">
+      <div class="cat-name">Danny</div>
+    </div>
+    <div class="cat-item">
+      <img src="imgs/foster/feito.jpeg" class="cat-img" alt="Feito">
+      <div class="cat-name">Feito</div>
+    </div>
+  </div>
+<br><br>
+<br><br>
+<br><br>
+
+</body>
+</html>
