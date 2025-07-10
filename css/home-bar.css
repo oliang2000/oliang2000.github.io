@@ -24,3 +24,10 @@
     vertical-align: middle;
     user-select: none;
 }
+
+.top-bar a:hover .home-dot {
+    background: #27aa65;
+}
+.top-bar a:hover .home-label {
+    color: #27aa65;
+}
