@@ -26,6 +26,18 @@
       margin-top: 100px;
       margin-bottom: 100px;
     }
+    .gifs-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 30px;
+    }
+    .gifs-row img {
+      height: 220px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+    }
   </style>
 </head>
 <body>
@@ -38,11 +50,11 @@
   </div>
 
   <!-- Main content -->
-  <div class="main-content" style="display: flex; flex-direction: column; align-items: center; max-width: 400px; margin: auto;">
-      <img src="https://media.tenor.com/iqZ0ku7e1jkAAAAM/cat-computer.gif" alt="cat at computer" style="width: 100%; max-width:350px;">
-      <div style="margin-top: 20px; font-size: 1.5em; color: #333; text-align: center;">
-          job searching...
-      </div>
+  <div class="main-content">
+    <div class="gifs-row">
+      <img src="https://media.tenor.com/iqZ0ku7e1jkAAAAM/cat-computer.gif" alt="cat at computer">
+      <img src="https://upgifs.com//img/gifs/qAbtO6dgm5bi0.gif" alt="dancing stick figure">
+    </div>
   </div>
 
   <!-- contact info -->
