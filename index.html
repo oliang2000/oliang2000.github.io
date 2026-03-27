@@ -80,6 +80,19 @@
       fill: #111;
       opacity: 1;
     }
+    .svg-point.intro {
+      stroke: #222;
+      stroke-width: 3;
+      fill: #111;
+      opacity: 1;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { filter: drop-shadow(0 0 0px rgba(39, 170, 101, 0)); }
+      50% { filter: drop-shadow(0 0 10px rgba(39, 170, 101, 0.6)); }
+    }
+    .svg-point.intro {
+      animation: pulse-glow 2.5s ease-in-out infinite;
+    }
   </style>
 </head>
 <body>
@@ -107,7 +120,7 @@
       <!-- Points -->
       <circle class="svg-point" data-point="1" cx="80" cy="130" r="18" fill="#fff" stroke="#222" stroke-width="4"/>
       <circle class="svg-point" data-point="2" cx="80" cy="320" r="18" fill="#fff" stroke="#222" stroke-width="4"/>
-      <circle class="svg-point large" data-point="3" cx="220" cy="230" r="26"/>
+      <circle class="svg-point large intro" data-point="3" cx="220" cy="230" r="26"/>
       <circle class="svg-point" data-point="4" cx="350" cy="200" r="18" fill="#fff" stroke="#222" stroke-width="4"/>
       <circle class="svg-point" data-point="5" cx="630" cy="255" r="18" fill="#fff" stroke="#222" stroke-width="4"/>
       <circle class="svg-point" data-point="6" cx="482" cy="65" r="18" fill="#fff" stroke="#222" stroke-width="4"/>
