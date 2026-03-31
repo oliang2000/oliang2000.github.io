@@ -50,13 +50,13 @@
       width: 100vw;
     }
     .left-bar {
-      width: 140px;
+      width: 120px;
       min-width: 110px;
       background: none;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      padding: 40px 10px 0 18px;
+      padding: 40px 0 0 0;
       gap: 20px;
       border-right: 1px solid #e7e5e2;
     }
@@ -65,7 +65,9 @@
       border: none;
       color: #333;
       font-size: 1.09em;
-      padding: 10px 30px;
+      padding: 10px 0;
+      width: 110px;
+      text-align: center;
       border-radius: 9px 0 0 9px;
       cursor: pointer;
       margin-bottom: 6px;
@@ -106,6 +108,13 @@
       border-radius: 16px;
       box-shadow: 0 4px 12px rgba(30,30,30,0.11);
       background: #ddd;
+      opacity: 0;
+      transform: scale(0.55);
+      animation: zoomReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    @keyframes zoomReveal {
+      0% { opacity: 0; transform: scale(0.55); }
+      100% { opacity: 1; transform: scale(1); }
     }
     /* Responsive */
     @media (max-width: 900px) {
@@ -136,8 +145,8 @@
   <div class="portfolio-layout">
     <!-- Left select bar -->
     <div class="left-bar">
-      <button class="portfolio-btn active" id="digitalBtn" onclick="showGallery('digital')">Digital</button>
-      <button class="portfolio-btn" id="filmBtn" onclick="showGallery('film')">Film</button>
+      <button class="portfolio-btn active" id="filmBtn" onclick="showGallery('film')">Film</button>
+      <button class="portfolio-btn" id="digitalBtn" onclick="showGallery('digital')">Digital</button>
     </div>
 
     <!-- Right gallery -->
@@ -190,23 +199,26 @@
       // Prepare 3 cols
       let cols = [[],[],[]];
       for(let i=1;i<=count;i++) cols[i%3].push(i);
-      // Assemble
+      // Assemble with staggered animation
+      let idx = 0;
       for(let c=0;c<3;c++) {
         let colDiv = document.createElement('div');
         colDiv.className = 'gallery-col';
         cols[c].forEach(i=>{
           let img = document.createElement('img');
           img.className = 'gallery-img';
+          img.style.animationDelay = (idx * 0.04) + 's';
           img.src = basePath + i + ".jpeg";
           img.alt = 'Photo ' + i;
           colDiv.appendChild(img);
+          idx++;
         });
         galleryDiv.appendChild(colDiv);
       }
     }
 
     // Initial load
-    showGallery('digital');
+    showGallery('film');
   </script>
 </body>
 </html>
