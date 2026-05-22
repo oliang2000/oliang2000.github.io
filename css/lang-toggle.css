@@ -1,0 +1,47 @@
+.lang-toggle {
+  position: fixed;
+  top: 14px;
+  left: 16px;
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-family: 'Public Sans', Arial, sans-serif;
+  font-size: 0.82em;
+  letter-spacing: 0.5px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 3px 8px;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.lang-toggle button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: 500;
+  padding: 2px 5px;
+  transition: color 0.15s;
+  line-height: 1;
+}
+
+.lang-toggle button:hover {
+  color: #27aa65;
+}
+
+.lang-toggle button.active {
+  color: #27aa65;
+  font-weight: 700;
+}
+
+.lang-toggle .lang-divider {
+  color: #ccc;
+  font-size: 0.95em;
+  line-height: 1;
+}

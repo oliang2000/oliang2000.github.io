@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Yingyi | Urban Analysis</title>
+  <title data-zh="Liang | 城市分析">Yingyi | Urban Analysis</title>
   <link rel="stylesheet" href="css/email-bottom.css">
   <link rel="stylesheet" href="css/home-bar.css">
+  <link rel="stylesheet" href="css/lang-toggle.css">
   <style>
     body {
       display: flex;
@@ -250,7 +251,7 @@
   <div class="top-bar">
     <a href="index.html" title="Home" style="display:inline-flex; align-items:center; text-decoration:none;">
       <span class="home-dot"></span>
-      <span class="home-label">HOME</span>
+      <span class="home-label">Home</span>
     </a>
   </div>
 
@@ -275,8 +276,8 @@
       style="top: 45%; left: calc(24% + 44px);"
       onclick="showPopup('popup-us')"
       tabindex="0">
-      <div class="pin-info-title">U.S. Opioid Environment</div>
-      <div class="pin-info-desc">
+      <div class="pin-info-title" data-zh="美国阿片类药物环境">U.S. Opioid Environment</div>
+      <div class="pin-info-desc" data-zh="用于提取美国诊所数据的自动化 Python Pipeline。为 Opioid Environment Policy Scan (OEPS) 提供数据支持。">
         Automated Python pipeline to extract U.S. clinic data.
         Powers the Opioid Environment Policy Scan (OEPS).
       </div>
@@ -300,8 +301,8 @@
       style="top: 80%; left: calc(52% + 44px);"
       onclick="showPopup('popup-sa')"
       tabindex="0">
-      <div class="pin-info-title">South African Urban Violence</div>
-      <div class="pin-info-desc">
+      <div class="pin-info-title" data-zh="南非城市暴力">South African Urban Violence</div>
+      <div class="pin-info-desc" data-zh="分析南非开普敦的非正式聚居程度与犯罪率之间的关系。">
         Analysis of relationship between informality and crime rates in Cape Town, South Africa.
       </div>
     </div>
@@ -313,15 +314,16 @@
       <button class="popup-close" onclick="closePopup('popup-sa')">&times;</button>
       <div class="popup-left">
         <img src="imgs/thesis.png" alt="South African Urban Violence Project">
-        <a class="popup-btn" target="_blank" href="https://knowledge.uchicago.edu/record/15445?ln=en&v=pdf">Read the Paper</a>
-        <a class="popup-btn" target="_blank" href="https://github.com/oliang2000/Liang-MAthesis/tree/main">View on GitHub</a>
+        <a class="popup-btn" target="_blank" href="https://knowledge.uchicago.edu/record/15445?ln=en&v=pdf" data-zh="阅读论文">Read the Paper</a>
+        <a class="popup-btn" target="_blank" href="https://github.com/oliang2000/Liang-MAthesis/tree/main" data-zh="在GitHub上查看">View on GitHub</a>
       </div>
       <div class="popup-right">
-        <div class="popup-title">South African Urban Violence</div>
-        <div class="popup-desc">
+        <div class="popup-title" data-zh="南非城市暴力">South African Urban Violence</div>
+        <div class="popup-desc" data-zh="我考察了南非社区的非正式程度与犯罪率之间的关系。在快速城市化的背景下，当地部分聚居区出现了犯罪组织介入并提供「服务」的现象。
+        我使用 K-Means 聚类方法进行分析，发现一个有意思的结果：非正式程度最高的那一类社区（即贫民窟），反而呈现出最低的犯罪率。">
         I examined the relationship between neighborhood informality and crime rates
         in South Africa, where rapid urbanization has led to criminal organizations stepping in
-        to provide services within some of these settlements. I used K-Means clustering and observed 
+        to provide services within some of these settlements. I used K-Means clustering and observed
         that the cluster with the highest level of informality (slums) also exhibited the lowest crime rates.
         </div>
       </div>
@@ -334,12 +336,13 @@
       <button class="popup-close" onclick="closePopup('popup-us')">&times;</button>
       <div class="popup-left" style="background:#fff;">
         <img src="imgs/opioid.png" alt="US Opioid Project">
-        <a class="popup-btn" target="_blank" href="https://github.com/GeoDaCenter/opioid-policy-scan">View on GitHub</a>
+        <a class="popup-btn" target="_blank" href="https://github.com/GeoDaCenter/opioid-policy-scan" data-zh="在GitHub上查看">View on GitHub</a>
       </div>
       <div class="popup-right">
-        <div class="popup-title">United States Opioid Environment</div>
-        <div class="popup-desc">
-          I developed a Python script to automatically extract clinic location and drug information from 40 years of Substance Abuse and Mental Health Services Administration (SAMHSA) PDF records. 
+        <div class="popup-title" data-zh="美国阿片类药物环境">United States Opioid Environment</div>
+        <div class="popup-desc" data-zh="我开发了一个 Python 脚本，能够自动从美国药物滥用与精神健康服务管理局（SAMHSA）长达四十年的 PDF 记录中，批量提取诊所位置与药物信息。
+        这些数据为 Opioid Environment Policy Scan（OEPS）提供了支撑——这是一个免费、开源的数据仓库，旨在系统刻画影响全美阿片类药物使用与健康结局的多维风险环境。">
+          I developed a Python script to automatically extract clinic location and drug information from 40 years of Substance Abuse and Mental Health Services Administration (SAMHSA) PDF records.
           This data powers the Opioid Environment Policy Scan (OEPS), a free and open-source data warehouse designed to help characterize the multi-dimensional risk environment impacting opioid use and health outcomes across the United States.
         </div>
       </div>
@@ -391,5 +394,6 @@
     </div>
   </div>
 
+  <script src="js/i18n.js"></script>
 </body>
 </html>

@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Yingyi | Interavtive Art</title>
+  <title data-zh="Liang | 写作">Yingyi | Writing</title>
   <link rel="stylesheet" href="css/email-bottom.css">
   <link rel="stylesheet" href="css/home-bar.css">
+  <link rel="stylesheet" href="css/lang-toggle.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
@@ -12,100 +13,105 @@
       margin: 0;
       background: #faf9f6;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     .main-content {
+      flex: 1 1 auto;
       margin-top: 100px;
       padding-bottom: 90px;
       display: flex;
       flex-direction: column;
       gap: 32px;
+      align-items: center;
+      justify-content: center;
+    }
+    .page-intro {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+      font-size: 1.05em;
+      line-height: 1.6;
+      color: #333;
+      text-align: left;
     }
     .gray-row {
       display: flex;
       background: #ededed;
       width: 100%;
+      max-width: 1100px;
+      border-radius: 16px;
       min-height: 300px;
-      padding: 44px 4vw 38px 4vw;
+      padding: 44px 48px 38px 48px;
       box-sizing: border-box;
       gap: 38px;
+      align-items: center;
     }
     .left-col {
       flex: 5;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: flex-start;
-      gap: 18px;
+      gap: 14px;
     }
-    .video-caption {
+    .section-caption {
       font-size: 1.23em;
       color: #171717;
       margin: 0 0 3px 0;
       font-weight: 600;
     }
-    .video-desc {
+    .section-desc {
       color: #333;
       margin-top: 0;
       margin-bottom: 7px;
       font-size: 1.05em;
-      line-height: 1.5;
-    }
-    .main-video {
-      width: 100%;
-      max-width: 705px;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(44,44,44,0.09);
-      outline: none;
-      background: #bbb;
+      line-height: 1.6;
     }
     .right-col {
       flex: 5;
       display: flex;
       flex-direction: column;
-      gap: 34px;
-      justify-content: flex-start;
-      align-items: stretch;
-    }
-    .gif-block {
-      display: flex;
-      flex-direction: column;
+      gap: 16px;
+      justify-content: center;
       align-items: center;
-      gap: 10px;
     }
-    .gif-img {
-      height: 180px;            /* Fixed height for all GIFs/images */
-      width: auto;              /* Maintains aspect ratio */
-      max-width: 100%;          /* Prevents overflow */
-      border-radius: 10px;
-      box-shadow: 0 2px 14px rgba(22,22,22,0.09);
-      background: #ccc;
-      display: block;
-      object-fit: contain;     /* Ensures the whole image is visible */
+    .podcast-embed {
+      width: 100%;
+      max-width: 660px;
+      height: 450px;
+      border: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
     }
-    .gif-desc {
-      font-size: 0.98em;
-      color: #393939;
-      text-align: center;
-      margin: 2px 0 0 0;
-      line-height: 1.4;
+    .listen-link {
+      display: inline-block;
+      padding: 9px 18px;
+      background: #fff;
+      color: #333;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.97em;
+      font-weight: 600;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      transition: background 0.15s, color 0.15s;
     }
-    /* 2nd row min structure, customize as needed */
-    .gray-row.second-row {
-      min-height: 100px;
-      gap: 42px;
+    .listen-link:hover {
+      background: #27aa65;
+      color: #fff;
     }
     @media (max-width: 900px) {
       .gray-row {
         flex-direction: column;
-        gap: 18px;
-        padding: 22px 1vw 18px 1vw;
+        gap: 22px;
+        padding: 28px 5vw 26px 5vw;
+        align-items: stretch;
+        border-radius: 12px;
       }
-      .left-col,.right-col { width: 100%; max-width: 100vw;}
-      .main-video { max-width: 98vw; }
-      .gif-img { 
-        height: 25vw;
-        max-height: 200px;
-      }
+      .left-col,.right-col { width: 100%; max-width: 100vw; align-items: flex-start; }
+      .podcast-embed { max-width: 100%; height: 450px; }
     }
   </style>
 </head>
@@ -114,51 +120,30 @@
   <div class="top-bar">
     <a href="index.html" title="Home" style="display:inline-flex; align-items:center; text-decoration:none;">
       <span class="home-dot"></span>
-      <span class="home-label">HOME</span>
+      <span class="home-label">Home</span>
     </a>
   </div>
 
   <div class="main-content">
-    <!-- Row 1: Ping Pong Game -->
+    <!-- Row 1: Podcast -->
     <div class="gray-row">
-      <!-- Left col: Video + description -->
       <div class="left-col">
-        <h2 class="video-caption">Ping! Pong! Game!</h2>
-        <p class="video-desc">
-          This is the first project I built in TouchDesigner while teaching myself the software. 
-          The concept is a ping pong simulator where users can hit the ball back when it reaches their side of the table. 
-          The software detects the speed at which the user moves via the pc camera and uses this data to control the speed of the returning ball. 
-          I found it particularly interesting to implement the physics myself using Python within TouchDesigner.
+        <h2 class="section-caption" data-zh="《Knock Knock 世界》">Knock Knock 世界 (Podcast)</h2>
+        <p class="section-desc" data-zh="2025 年末，我以自由写作者的身份，加入了声动活泼出品的青少年播客《Knock Knock 世界》，这也是我第一次尝试「长期」输出内容。目前，我已经参与制作了几十期节目，真切体会到了创作带来的兴奋与痛苦，也在不断探索声音作为媒介的意义，以及适合青少年的议题。我有幸采访过科幻作家和火箭工程师，更幸运的是，在孩子们无数个好奇的问题中，我收获了许多灵感，也看到了对这个动荡世界未来的希望。<br><br>我的写作主要围绕环境、社会与科学议题展开。通过参考新闻、论文、相关书籍和纪录片等资料，我希望把时事讲给9-13岁的孩子听，帮助他们拓展理解世界的方式，培养独立思考的能力。">
+          I joined Knock Knock World, a teen-focused podcast produced by ShengFM（声动活泼） as a freelance writer &mdash; my first attempt at putting out content on a long-term basis. Since then I've helped make dozens of episodes, getting to know firsthand both the thrill and the difficulty of the creative process, while continuing to explore what audio offers as a medium and what topics resonate with teenage listeners. I've been lucky enough to interview interesting people like a science-fiction writer and a rocket engineer &mdash; and even luckier to find, in the kids' endless curious questions, a steady source of inspiration and some hope for the future of this turbulent world.<br><br>
+          My writing centers on environmental, social, and scientific topics. Drawing on news, research papers, books, and documentaries, I try to translate current events for 9-to-13-year-olds, helping them broaden how they see the world and build the habit of thinking for themselves.
         </p>
-        <video class="main-video" controls poster="files/demo_cover.png">
-          <source src="files/demo.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <!-- Right column -->
-      <div class="right-col">
-        <div class="gif-block">
-          <img class="gif-img" src="imgs/pingpong_network_structure.png" alt="Program Network Structure">
-          <div class="gif-desc">Network structure in TouchDesigner.</div>
-        </div>
-        <div class="gif-block">
-          <img class="gif-img" src="files/text.gif" alt="GIF 1">
-          <div class="gif-desc">A text gif produced with the same pipeline.</div>
-        </div>
-        <div class="gif-block">
-          <img class="gif-img" src="files/g_test.gif" alt="GIF 2">
-          <div class="gif-desc">Testing out different gravity, speed parameters + dynamic camera angles.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Row 2 -->
-    <div class="gray-row second-row">
-      <div class="left-col">
-        <h2 class="video-caption"><strong>Coming soon...</strong></h2>
+        <a class="listen-link" href="https://podcasts.apple.com/cn/podcast/knock-knock-%E4%B8%96%E7%95%8C/id1803558248" target="_blank" rel="noopener" data-zh="在 Apple Podcasts 收听 &rarr;">Listen on Apple Podcasts &rarr;</a>
       </div>
       <div class="right-col">
-        <!-- Add content for 2nd row here -->
+        <iframe
+          class="podcast-embed"
+          allow="autoplay *; encrypted-media *;"
+          frameborder="0"
+          sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+          src="https://embed.podcasts.apple.com/cn/podcast/knock-knock-%E4%B8%96%E7%95%8C/id1803558248"
+          title="Knock Knock 世界 on Apple Podcasts">
+        </iframe>
       </div>
     </div>
   </div>
@@ -181,6 +166,7 @@
       </div>
     </div>
   </div>
-  
+
+  <script src="js/i18n.js"></script>
 </body>
 </html>

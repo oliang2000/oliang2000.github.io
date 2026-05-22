@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Yingyi | Photo Portfolio </title>
+  <title data-zh="Liang | 摄影作品集">Yingyi | Photo Portfolio </title>
   <link rel="stylesheet" href="css/email-bottom.css">
+  <link rel="stylesheet" href="css/lang-toggle.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
@@ -16,7 +17,7 @@
     .top-bar {
       display: flex;
       align-items: center;
-      padding: 28px 0 12px 34px;
+      padding: 52px 0 12px 34px;
       position: absolute;
       top: 0;
       left: 0;
@@ -59,6 +60,10 @@
       padding: 40px 0 0 0;
       gap: 20px;
       border-right: 1px solid #e7e5e2;
+      position: sticky;
+      top: 100px;
+      align-self: flex-start;
+      max-height: calc(100vh - 100px);
     }
     .portfolio-btn {
       background: #f4f2ef;
@@ -124,7 +129,17 @@
     }
     @media (max-width: 670px) {
       .portfolio-layout { flex-direction: column; }
-      .left-bar { flex-direction: row; border-right: none; padding: 20px 0 0 0; width:auto; align-items: flex-start; }
+      .left-bar {
+        flex-direction: row;
+        border-right: none;
+        padding: 20px 0 8px 0;
+        width: auto;
+        align-items: flex-start;
+        top: 0;
+        max-height: none;
+        background: #faf9f6;
+        z-index: 50;
+      }
       .gallery-section { padding: 8px 2vw; }
     }
     /* Hide number input spinner in FF/Chrome */
@@ -138,15 +153,15 @@
   <div class="top-bar">
     <a href="index.html" title="Home" style="display:inline-flex; align-items:center; text-decoration:none;">
       <span class="home-dot"></span>
-      <span class="home-label">HOME</span>
+      <span class="home-label">Home</span>
     </a>
   </div>
 
   <div class="portfolio-layout">
     <!-- Left select bar -->
     <div class="left-bar">
-      <button class="portfolio-btn active" id="filmBtn" onclick="showGallery('film')">Film</button>
-      <button class="portfolio-btn" id="digitalBtn" onclick="showGallery('digital')">Digital</button>
+      <button class="portfolio-btn active" id="filmBtn" onclick="showGallery('film')" data-zh="胶片">Film</button>
+      <button class="portfolio-btn" id="digitalBtn" onclick="showGallery('digital')" data-zh="数码">Digital</button>
     </div>
 
     <!-- Right gallery -->
@@ -175,8 +190,8 @@
   </div>
 
   <script>
-    const digitalImgCount = 21;
-    const filmImgCount = 9;
+    const digitalOrder = [18, 15, 16, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 17];
+    const filmOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const galleryDiv = document.getElementById('gallery');
     const digitalBtn = document.getElementById('digitalBtn');
     const filmBtn = document.getElementById('filmBtn');
@@ -186,30 +201,30 @@
       if (type === "digital") {
         digitalBtn.classList.add('active');
         filmBtn.classList.remove('active');
-        fillGallery("imgs/digital_portfolio/", digitalImgCount);
+        fillGallery("imgs/digital_portfolio/", digitalOrder);
       } else {
         filmBtn.classList.add('active');
         digitalBtn.classList.remove('active');
-        fillGallery("imgs/film_portfolio/", filmImgCount);
+        fillGallery("imgs/film_portfolio/", filmOrder);
       }
     }
 
-    function fillGallery(basePath, count) {
+    function fillGallery(basePath, order) {
       galleryDiv.innerHTML = '';
-      // Prepare 3 cols
+      // Distribute row-major into 3 columns
       let cols = [[],[],[]];
-      for(let i=1;i<=count;i++) cols[i%3].push(i);
+      order.forEach((n, i) => cols[i % 3].push(n));
       // Assemble with staggered animation
       let idx = 0;
       for(let c=0;c<3;c++) {
         let colDiv = document.createElement('div');
         colDiv.className = 'gallery-col';
-        cols[c].forEach(i=>{
+        cols[c].forEach(n=>{
           let img = document.createElement('img');
           img.className = 'gallery-img';
           img.style.animationDelay = (idx * 0.04) + 's';
-          img.src = basePath + i + ".jpeg";
-          img.alt = 'Photo ' + i;
+          img.src = basePath + n + ".jpeg";
+          img.alt = 'Photo ' + n;
           colDiv.appendChild(img);
           idx++;
         });
@@ -220,5 +235,6 @@
     // Initial load
     showGallery('film');
   </script>
+  <script src="js/i18n.js"></script>
 </body>
 </html>

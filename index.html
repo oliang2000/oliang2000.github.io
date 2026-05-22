@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Yingyi Liang Personal Website</title>
+  <title data-zh="Liang | 个人网站">Yingyi Liang Personal Website</title>
   <link rel="stylesheet" href="css/email-bottom.css">
+  <link rel="stylesheet" href="css/lang-toggle.css">
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
@@ -18,7 +19,7 @@
     .top-left-name {
       position: fixed;
       left: 30px;
-      top: 20px;
+      top: 52px;
       z-index: 100;
       color: #27aa65;
       font-size: 2.0em;
@@ -101,7 +102,7 @@
   </style>
 </head>
 <body>
-  <div class="top-left-name">yingyi liang</div>
+  <div class="top-left-name" data-zh="yingyi liang">yingyi liang</div>
   <div class="container">
     <!-- Hover label for displaying text -->
     <div class="hover-label" id="hoverLabel"></div>
@@ -193,15 +194,19 @@
     const SVG_NS = 'http://www.w3.org/2000/svg';
 
     const points = {
-      "1": { label: "time machine...", url: "young.html" },
-      "2": { label: "foster cats!", url: "cats.html" },
-      "3": { label: "introduction", url: "introduction.html" },
-      "4": { label: "astrophysics publications", url: "astrophysics.html" },
-      "5": { label: "urban science", url: "urban.html" },
-      "6": { label: "photography", url: "photography.html" },
-      "7": { label: "interactive art", url: "art.html" },
-      "8": { label: "currently...", url: "currently.html" }
+      "1": { label: { en: "time machine...", zh: "时光机..." }, url: "young.html" },
+      "2": { label: { en: "foster cats!", zh: "寄养猫咪!" }, url: "cats.html" },
+      "3": { label: { en: "introduction", zh: "自我介绍" }, url: "introduction.html" },
+      "4": { label: { en: "astrophysics publications", zh: "天体物理" }, url: "astrophysics.html" },
+      "5": { label: { en: "urban science", zh: "城市科学" }, url: "urban.html" },
+      "6": { label: { en: "photography", zh: "摄影" }, url: "photography.html" },
+      "7": { label: { en: "writing", zh: "写作" }, url: "art.html" },
+      "8": { label: { en: "currently...", zh: "目前..." }, url: "currently.html" }
     };
+    const nextLabel = { en: "what's next?", zh: "下一站?" };
+    function currentLang() {
+      return (window.siteLang && window.siteLang.get()) || 'en';
+    }
 
     // Planet ring colors (lighter version of planet color for the ring)
     const planetRingColors = {
@@ -331,7 +336,8 @@
         const scaleY = rect.height / svgH;
         const pageX = rect.left + cx * scaleX;
         const pageY = rect.top + cy * scaleY;
-        let labelText = realPoints.includes(ptNum) ? points[ptNum].label : "what's next?";
+        const lang = currentLang();
+        let labelText = realPoints.includes(ptNum) ? points[ptNum].label[lang] : nextLabel[lang];
         hoverLabel.textContent = labelText;
         hoverLabel.style.left = `${pageX + 10}px`;
         hoverLabel.style.top = `${pageY + 10}px`;
@@ -608,5 +614,6 @@
   </div>
 </div>
 
+<script src="js/i18n.js"></script>
 </body>
 </html>
